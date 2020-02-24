@@ -33,9 +33,10 @@ class Product extends AbstractEntity
      */
     private $comments;
 
-    public function __construct()
+    public function __construct(array $attributes = [])
     {
-        parent::__construct();
+        parent::__construct($attributes);
+
         $this->comments = new ArrayCollection();
     }
 
