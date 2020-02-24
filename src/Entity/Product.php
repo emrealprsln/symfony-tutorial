@@ -29,7 +29,7 @@ class Product extends AbstractEntity
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
     private $comments;
 
