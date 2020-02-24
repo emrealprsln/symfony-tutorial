@@ -21,9 +21,9 @@ trait AttributeFillable
      */
     protected function fillAttributes(array $attributes): self
     {
-        foreach ($attributes as $key => $attribute) {
+        foreach ($attributes as $key => $value) {
             if (method_exists($this, $method = $this->fetchSetterMethod($key))) {
-                $this->$method($attribute);
+                $this->$method($value);
             }
         }
 
