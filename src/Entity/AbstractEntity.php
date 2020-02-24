@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
  * Class AbstractEntity.
  *
  * @method static find(int $id)
+ * @method save()
  */
 abstract class AbstractEntity
 {
@@ -25,17 +26,7 @@ abstract class AbstractEntity
      */
     public function __construct(array $attributes = [])
     {
-        $this->assignBootRequirements();
-
         $this->fillAttributes($attributes);
-    }
-
-    /**
-     * @return void
-     */
-    private function assignBootRequirements()
-    {
-        $this->_em = entity_manager();
     }
 
     /**
@@ -43,16 +34,11 @@ abstract class AbstractEntity
      */
     public function getEntityManager(): EntityManager
     {
-        return $this->_em;
-    }
+        if (is_null($this->_em)) {
+            $this->_em = entity_manager();
+        }
 
-    /**
-     * @return void
-     */
-    public function save()
-    {
-        $this->_em->persist($this);
-        $this->_em->flush();
+        return $this->_em;
     }
 
     /**

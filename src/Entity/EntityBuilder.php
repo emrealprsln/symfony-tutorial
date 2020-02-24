@@ -30,4 +30,13 @@ class EntityBuilder
     {
         return $this->entity->getEntityManager()->find(get_class($this->entity), $id);
     }
+
+    /**
+     * @return void
+     */
+    public function save()
+    {
+        $this->entity->getEntityManager()->persist($this->entity);
+        $this->entity->getEntityManager()->flush();
+    }
 }
